@@ -46,12 +46,8 @@ export class inicio extends Phaser.Scene {
         this.botonCred = this.add.image(160, 180 * 0.85, 'boton_credits_i');
         this.botonEleg = this.add.image(160, 180 * 0.55, 'boton_play');
 
-        this.botonE = 1;
-
         this.nube = this.add.sprite();
         this.controles = this.add.image();
-        this.controlActivado = 0;
-        this.creditsActivado = 0;
 
         // animations
         this.createAnim('fondoAnim', 'fondo', 1);
@@ -67,6 +63,10 @@ export class inicio extends Phaser.Scene {
 
         this.keyS = this.input.keyboard.addKey('S');
         this.keyDown = this.input.keyboard.addKey('DOWN')
+
+        this.botonE = 1;
+        this.controlActivado = 0;
+        this.creditsActivado = 0;
 
     }
 
