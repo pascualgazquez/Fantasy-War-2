@@ -1,5 +1,6 @@
 import { inicio } from './scenes/inicio.js';
 import { lobby } from './scenes/lobby.js';
+import { juego } from './scenes/juego.js';
 //import { juego } from './scenes/juego.js';
 
 var config = {
@@ -14,7 +15,6 @@ var config = {
     },
     input: {},
 
-
     autoCenter: true,
 
     physics:
@@ -23,7 +23,7 @@ var config = {
         arcade: { debug: false }
     },
 
-    scene: [inicio, lobby]
+    scene: [inicio, lobby, juego]
 };
 
 var game = new Phaser.Game(config);
