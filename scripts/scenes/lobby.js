@@ -141,7 +141,7 @@ export class lobby extends Phaser.Scene {
                     // sonido
                     this.aceptar.play();
                     // funcionalidad
-                    this.scene.start('inicio')
+                    this.scene.start('juego')
 
                 }
                 else { this.rechazar.play(); }
@@ -215,7 +215,7 @@ export class lobby extends Phaser.Scene {
                     // sonido
                     this.aceptar.play();
                     // funcionalidad
-                    this.scene.start('inicio')
+                    this.scene.start('juego')
 
                 }
                 else { this.rechazar.play(); }
