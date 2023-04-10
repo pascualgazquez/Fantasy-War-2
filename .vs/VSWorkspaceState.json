@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\scripts",
-    "\\scripts\\scenes"
+    "\\scripts\\scenes",
+    "\\scripts\\tropas"
   ],
-  "SelectedNode": "\\scripts\\scenes\\lobby.js",
+  "SelectedNode": "\\scripts\\scenes\\juego.js",
   "PreviewInSolutionExplorer": false
 }

@@ -1,7 +1,9 @@
+import { Tropas } from '../tropas/tropa.js';
+
 export class juego extends Phaser.Scene {
 
     constructor() {
-        super({ key: 'juego' });
+        super({ key: 'juego' }); 
     }
 
     preload() {
@@ -32,6 +34,15 @@ export class juego extends Phaser.Scene {
     create() {
 
         this.arrowX = 8;
+
+        let tropas = new Tropas();
+        this.tropas = tropas;
+
+        this.caminoP1 = 2;
+        this.caminoP2 = 2;
+
+        this.tropaP1 = 2;
+        this.tropaP2 = 2;
 
         // sound
         this.aceptar = this.sound.add('aceptar');
@@ -65,6 +76,9 @@ export class juego extends Phaser.Scene {
         this.textGold2 = this.add.text(320 - 40, 4, '10', { font: "12px 'PS2P'", color: '#fff200' });
         this.goldP1 = 10;
         this.goldP2 = 10;
+        this.timer = 0;
+        this.textGold1.setText(this.goldP1);
+        this.textGold2.setText(this.goldP2);
 
         //controles
 
@@ -82,22 +96,25 @@ export class juego extends Phaser.Scene {
         this.keyRight = this.input.keyboard.addKey('RIGHT');
         this.keyEnter = this.input.keyboard.addKey('ENTER');
 
-        this.caminoP1 = 2;
-        this.caminoP2 = 2;
-
-        this.tropaP1 = 2;
-        this.tropaP2 = 2;
-
     }
 
     update() {
 
-        // GOLD
-        if (this.goldP1 < 99) { this.goldP1 += 1;}
-        if (this.goldP2 < 99) { this.goldP2 += 1; }
+        this.tropas.update();
 
-        this.textGold1.setText(this.goldP1);
-        this.textGold2.setText(this.goldP2);
+        // ORO
+        this.timer++;
+        if (this.timer >= 20) {
+
+            this.timer = 0;
+
+            if (this.goldP1 < 99) { this.goldP1 += 1; }
+            if (this.goldP2 < 99) { this.goldP2 += 1; }
+           
+            this.textGold1.setText(this.goldP1);
+            this.textGold2.setText(this.goldP2);
+
+        }
 
         // P1 ///////////////////////////////////
 
@@ -191,8 +208,7 @@ export class juego extends Phaser.Scene {
 
         // TECLA ACEPTAR P1
         if (Phaser.Input.Keyboard.JustDown(this.keySpace)) {
-
-
+            this.tropas.newTropa(this.tropaP1, this.caminoP1, 1);
         }
 
         // P2 ///////////////////////////////////
@@ -288,8 +304,7 @@ export class juego extends Phaser.Scene {
 
         // TECLA ACEPTAR P1
         if (Phaser.Input.Keyboard.JustDown(this.keyEnter)) {
-
-
+            this.tropas.newTropa(this.tropaP2, this.caminoP2, 2);
         }
 
     }

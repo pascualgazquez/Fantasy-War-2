@@ -1,7 +1,6 @@
 import { inicio } from './scenes/inicio.js';
 import { lobby } from './scenes/lobby.js';
 import { juego } from './scenes/juego.js';
-//import { juego } from './scenes/juego.js';
 
 var config = {
     type: Phaser.AUTO,
