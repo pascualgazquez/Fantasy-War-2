@@ -105,10 +105,12 @@ export class juego extends Phaser.Scene {
         this.cartaMago2 = this.add.sprite(320 - 84, 165, 'cartaMago2').setScale(1, 1);
         this.cartaGoblin2 = this.add.sprite(320 - 108, 165, 'cartaGoblin2').setScale(.6, .6);
 
-        this.healthBar1bg = this.createBarra(4, 4, 0xe74c3c);
-        this.healthBar2bg = this.createBarra(160 + 4, 4, 0xe74c3c);
-        this.healthBar1 = this.createBarra(4, 4, 0x2ecc71);
-        this.healthBar2 = this.createBarra(160 + 4, 4, 0x2ecc71);
+        this.healthBar1bg = this.createBarra(4, 4, 0xe74c3c, 0);
+        this.healthBar2bg = this.createBarra(160 + 4, 4, 0xe74c3c, 0);
+        this.healthBar1 = this.createBarra(4, 4, 0x2ecc71, 0);
+        this.healthBar2 = this.createBarra(320-4, 16, 0x2ecc71, 1);
+        this.healthBar2.rotation = Math.PI;
+
 
         // animations
         this.createAnim('coinAnim', 'coin', 3);
@@ -170,23 +172,12 @@ export class juego extends Phaser.Scene {
         this.tropas.update();
         this.controles();
 
+        // VIDA
         this.health = this.tropas.getHealth();
         this.setBarra(this.healthBar1, this.health[0]);
         this.setBarra(this.healthBar2, this.health[1]);
 
-        if ((this.health[0] <= 0) || (this.health[1] <= 0)) {
-
-            var victoria;
-            if (this.health[0] <= 0) { victoria = 1; }
-            else if (this.health[1] <= 0) { victoria = 2; }
-            else if ((this.health[0] <= 0) && (this.health[1] <= 0)) { victoria = 3; }
-
-            this.tropas.clear();
-            this.musica1.stop();
-            this.scene.start('final', victoria)
-        }
-
-        // ORO
+        // ORO y PRECIOS
         this.timer++;
         if (this.timer >= 20) {
             this.timer = 0;
@@ -219,6 +210,19 @@ export class juego extends Phaser.Scene {
         }
         this.textPrecio1.setText(this.precioP1);
         this.textPrecio2.setText(this.precioP2);
+
+        // CONDICIÓN DE VICTORIA
+        if ((this.health[0] <= 0) || (this.health[1] <= 0)) {
+
+            var victoria;
+            if (this.health[0] <= 0) { victoria = 2; }
+            else if (this.health[1] <= 0) { victoria = 1; }
+            else if ((this.health[0] <= 0) && (this.health[1] <= 0)) { victoria = 3; }
+
+            this.tropas.clear();
+            this.musica1.stop();
+            this.scene.start('final', { value: victoria });
+        }
 
     }
 
@@ -452,7 +456,7 @@ export class juego extends Phaser.Scene {
 
     }
 
-    createBarra(x, y, color) {
+    createBarra(x, y, color, z) {
 
         // https://phasergames.com/how-to-make-a-health-bar-in-phaser-3/
 
