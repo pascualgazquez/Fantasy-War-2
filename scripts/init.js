@@ -1,7 +1,7 @@
 import { inicio } from './scenes/inicio.js';
 import { lobby } from './scenes/lobby.js';
 import { juego } from './scenes/juego.js';
-//import { juego } from './scenes/juego.js';
+import { final } from './scenes/final.js';
 
 var config = {
     type: Phaser.AUTO,
@@ -23,7 +23,7 @@ var config = {
         arcade: { debug: false }
     },
 
-    scene: [inicio, lobby, juego]
+    scene: [inicio, lobby, juego, final]
 };
 
 var game = new Phaser.Game(config);

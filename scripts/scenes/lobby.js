@@ -210,7 +210,7 @@ export class lobby extends Phaser.Scene {
             if (this.botonP2 == 2) {
 
                 // Preparados
-                if ((this.readyP2 == 1) && (this.readyP2 == 1)) {
+                if ((this.readyP1 == 1) && (this.readyP2 == 1)) {
 
                     // sonido
                     this.aceptar.play();
